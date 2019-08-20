@@ -16,6 +16,7 @@ class Car(models.Model):
     model = models.CharField(max_length=32)
     year = models.DateField()
     currently_with = models.CharField(choices=WITH_OPTIONS,default='Branch',max_length=2)
+    assigned_to = models.IntegerField(default=0)
     in_service = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now_add=True)
 
