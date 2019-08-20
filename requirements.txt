@@ -1,0 +1,11 @@
+celery
+django
+djangorestframework
+django-heroku
+gunicorn
+numpy
+pandas
+pytest
+pytest-cov
+requests
+sqlparse
