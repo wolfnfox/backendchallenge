@@ -1,6 +1,13 @@
 from django.db import models
 
 # Create your models here.
+class Branch(models.Model):
+    city = models.CharField(max_length=32)
+    postcode = models.CharField(max_length=9)
+
+    class Meta:
+        ordering = ['city']
+
 class Car(models.Model):
     WITH_OPTIONS = [('BR','Branch'),('DR','Driver')]
 
