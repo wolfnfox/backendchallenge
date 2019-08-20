@@ -1,9 +1,9 @@
 from django.db import models
 
-WITH_OPTIONS = [('BR','Branch'),('DR','Driver')]
-
 # Create your models here.
 class Car(models.Model):
+    WITH_OPTIONS = [('BR','Branch'),('DR','Driver')]
+
     registration = models.CharField(unique=True,max_length=7)
     make = models.CharField(max_length=32)
     model = models.CharField(max_length=32)
@@ -14,3 +14,10 @@ class Car(models.Model):
 
     class Meta:
         ordering = ['registration']
+
+class Driver(models.Model):
+    name = models.CharField(max_length=128)
+    date_of_birth = models.DateField()
+
+    class Meta:
+        ordering = ['name']
