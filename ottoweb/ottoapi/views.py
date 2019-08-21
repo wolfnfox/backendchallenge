@@ -72,3 +72,36 @@ class CarDetail(APIView):
             return Car.objects.get(pk=car_id)
         except Car.DoesNotExist:
             raise Http404
+
+class DriverList(APIView):
+    def get(self,request,format=None):
+        drivers = Driver.objects.all()
+        driver_serializer = DriverSerializer(cars,many=True)
+        return Response(driver_serializer.data)
+
+    def post(self,request,format=None):
+        driver_serializer = DriverSerializer(data=request.data)
+        if driver_serializer.is_valid():
+            driver_serializer.save()
+            return Response(driver_serializer.data,status=status.HTTP_201_CREATED)
+        return Response(driver_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class DriverDetail(APIView):
+    def get(self,request,driver_id,format=None):
+        driver = self.retrieve_driver(driver_id)
+        driver_serializer = DriverSerializer(driver)
+        return Response(driver_serializer.data)
+
+    def put(self,request,driver_id,format=None):
+        driver = self.retrieve_driver(driver_id)
+        driver_serializer = DriverSerializer(driver,data=request.data)
+        if driver_serializer.is_valid():
+            driver_serializer.save()
+            return Response(driver_serializer.data)
+        return Response(driver_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve_driver(self,driver_id):
+        try:
+            return Driver.objects.get(pk=driver_id)
+        except Driver.DoesNotExist:
+            raise Http404
