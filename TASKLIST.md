@@ -7,8 +7,10 @@ Development Task List
 -- completed
 
 (2) Add capacity to branch
+-> added placeholder function to check capacity
 -- in progress
-
+-> add parameter query for list of cars at branch
+-> update placeholder function to compare list length to capacity field
 
 ## On Hold
 
