@@ -17,6 +17,8 @@ class AssignCar(APIView):
             return Response('Invalid assignment option.',status=status.HTTP_400_BAD_REQUEST)
         if with_option == 'BR':
             option = BranchDetail.retrieve_branch(assign_id)
+            if self.check_branch_capacity(assign_id):
+                return Response('Branch already at maximum capacity.',status=status.HTTP_400_BAD_REQUEST)
         if with_option == 'DR':
             option = DriverDetail.retrieve_driver(assign_id)
         # Assign Car
@@ -29,6 +31,13 @@ class AssignCar(APIView):
             car_serializer.save()
             return Response(car_serializer.data)
         return Response(car_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def check_branch_capacity(self,branch_id):
+        capacity = 2
+        num_assigned_cars = 0
+        if num_assigned_cars >= capacity:
+            return False
+        return True
 
 class BranchList(APIView):
     def get(self,request,format=None):

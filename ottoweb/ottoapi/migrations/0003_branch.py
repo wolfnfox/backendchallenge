@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('city', models.CharField(max_length=32)),
                 ('postcode', models.CharField(max_length=9)),
+                ('capacity', models.PositiveIntegerField(default=1))
             ],
             options={
                 'ordering': ['city'],

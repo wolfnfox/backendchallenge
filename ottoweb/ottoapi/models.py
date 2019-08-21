@@ -4,6 +4,7 @@ from django.db import models
 class Branch(models.Model):
     city = models.CharField(max_length=32)
     postcode = models.CharField(max_length=9)
+    capacity = models.PositiveIntegerField(default=1)
 
     class Meta:
         ordering = ['city']
