@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/branch/', views.BranchList.as_view()),
     path('api/branch/<int:branch_id>/', views.BranchDetail.as_view()),
+    path('api/car/', views.CarList.as_view()),
+    path('api/car/<int:car_id>/', views.CarDetail.as_view()),
 ]

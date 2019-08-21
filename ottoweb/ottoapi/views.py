@@ -13,7 +13,7 @@ class BranchList(APIView):
         branch_serializer = BranchSerializer(branches,many=True)
         return Response(branch_serializer.data)
 
-    def post(self, request, format=None):
+    def post(self,request,format=None):
         branch_serializer = BranchSerializer(data=request.data)
         if branch_serializer.is_valid():
             branch_serializer.save()
@@ -38,4 +38,37 @@ class BranchDetail(APIView):
         try:
             return Branch.objects.get(pk=branch_id)
         except Branch.DoesNotExist:
+            raise Http404
+
+class CarList(APIView):
+    def get(self,request,format=None):
+        cars = Car.objects.all()
+        car_serializer = CarSerializer(cars,many=True)
+        return Response(car_serializer.data)
+
+    def post(self,request,format=None):
+        car_serializer = CarSerializer(data=request.data)
+        if car_serializer.is_valid():
+            car_serializer.save()
+            return Response(car_serializer.data,status=status.HTTP_201_CREATED)
+        return Response(car_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class CarDetail(APIView):
+    def get(self,request,car_id,format=None):
+        car = self.retrieve_car(car_id)
+        car_serializer = CarSerializer(car)
+        return Response(car_serializer.data)
+
+    def put(self,request,car_id,format=None):
+        car = self.retrieve_car(car_id)
+        car_serializer = CarSerializer(car,data=request.data)
+        if car_serializer.is_valid():
+            car_serializer.save()
+            return Response(car_serializer.data)
+        return Response(car_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve_car(self,car_id):
+        try:
+            return Car.objects.get(pk=car_id)
+        except Car.DoesNotExist:
             raise Http404
