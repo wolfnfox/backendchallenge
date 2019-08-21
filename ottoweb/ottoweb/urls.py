@@ -20,10 +20,13 @@ from ottoapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/branch/', views.BranchList.as_view()),
-    path('api/branch/<int:branch_id>/', views.BranchDetail.as_view()),
-    path('api/car/', views.CarList.as_view()),
-    path('api/car/<int:car_id>/', views.CarDetail.as_view()),
-    path('api/driver/', views.DriverList.as_view()),
-    path('api/driver/<int:driver_id>/', views.DriverDetail.as_view()),
+    path('api/assigncar/<int:car_id>'+\
+                      '/<str:with_option>'+\
+                      '/<int:assign_id>/',views.AssignCar.as_view()),
+    path('api/branch/',views.BranchList.as_view()),
+    path('api/branch/<int:branch_id>/',views.BranchDetail.as_view()),
+    path('api/car/',views.CarList.as_view()),
+    path('api/car/<int:car_id>/',views.CarDetail.as_view()),
+    path('api/driver/',views.DriverList.as_view()),
+    path('api/driver/<int:driver_id>/',views.DriverDetail.as_view()),
 ]
