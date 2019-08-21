@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
+from ottoapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/branch/', views.BranchList.as_view()),
+    path('api/branch/<int:branch_id>/', views.BranchDetail.as_view()),
 ]
