@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\ottoweb\\manage.py",
+            "program": "${workspaceFolder}/ottoweb/manage.py",
             "args": [
                 "runserver",
                 "--noreload"
