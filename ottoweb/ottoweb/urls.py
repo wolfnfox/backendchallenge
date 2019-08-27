@@ -19,7 +19,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from ottoapi import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/',admin.site.urls),
     path('api/assigncar/<int:car_id>'+\
                       '/<str:with_option>'+\
                       '/<int:assign_id>/',views.AssignCar.as_view()),

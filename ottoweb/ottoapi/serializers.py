@@ -4,7 +4,7 @@ from ottoapi.models import Branch, Car, Driver
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
-        fields = ['id','city','postcode']
+        fields = ['id','city','postcode','capacity']
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
